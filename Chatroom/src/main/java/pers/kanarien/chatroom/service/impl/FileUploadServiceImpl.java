@@ -27,6 +27,7 @@ public class FileUploadServiceImpl implements FileUploadService{
         String filename = getRandomUUID();
         String suffix = "";
         String originalFilename = file.getOriginalFilename();
+        System.out.println(originalFilename);
         String fileSize = FileUtils.getFormatSize(file.getSize());
         // 截取文件的后缀名
         if (originalFilename.contains(".")) {

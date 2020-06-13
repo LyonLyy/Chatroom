@@ -159,8 +159,17 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<optimize>true</optimize>
+
 				</configuration>
 			</plugin>
-		</plugins>
+
+
+            <plugin><groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <includeEmptyDirectories>true</includeEmptyDirectories></configuration>
+            </plugin>
+        </plugins>
 	</build>
 </project>
