@@ -335,7 +335,7 @@
         showPreview : true, //是否显示预览,不写默认为true
         dropZoneTitle: "请通过拖拽图片文件放到这里",
         dropZoneEnabled : false,//是否显示拖拽区域，默认不写为true，但是会占用很大区域
-        maxFileSize: 30720,//单位为kb，如果为0表示不限制文件大小
+        maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
         maxFileCount : 1, //表示允许同时上传的最大文件个数
         enctype : 'multipart/form-data',
         validateInitialCount : true,
