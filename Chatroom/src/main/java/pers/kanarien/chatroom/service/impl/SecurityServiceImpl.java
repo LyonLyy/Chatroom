@@ -20,13 +20,14 @@ public class SecurityServiceImpl implements SecurityService{
 
     @Autowired
     private UserInfoDao userInfoDao;
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityServiceImpl.class);
-    
-    
+
+
     @Override
     public ResponseJson login(String username, String password, HttpSession session) {
         UserInfo userInfo = userInfoDao.getByUsername(username);
+
         if (userInfo == null) {
             return new ResponseJson().error("不存在该用户名");
         }

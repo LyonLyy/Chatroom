@@ -13,10 +13,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     private UserInfoDao userInfoDao;
-    
+
     @Override
     public ResponseJson getByUserId(String userId) {
         UserInfo userInfo = userInfoDao.getByUserId(userId);
+        return new ResponseJson().success()
+                .setData("userInfo", userInfo);
+    }
+
+    @Override
+    public ResponseJson getByUserName(String userName) {
+        UserInfo userInfo = userInfoDao.getByUsername(userName);
         return new ResponseJson().success()
                 .setData("userInfo", userInfo);
     }

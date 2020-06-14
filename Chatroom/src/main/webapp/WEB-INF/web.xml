@@ -25,6 +25,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+	<!-- session listener 多用户登录限制,退出清除session信息的同时清除application中存放用户登录信息-->
+	<listener>
+		<listener-class>pers.kanarien.chatroom.web.interceptor.SessionListener</listener-class>
+	</listener>
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
