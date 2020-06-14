@@ -55,7 +55,7 @@ public class UserAuthInteceptor implements HandlerInterceptor {
             Map<String, String> loginOutTime = (Map<String, String>) session.getServletContext().getAttribute("loginOutTime");
             session.setAttribute("mess", "用户：" + userInfo.getUsername() + "，于 " + loginOutTime.get(userInfo.getUsername()) + " 已在别处登录!");
             loginOutTime.remove(userInfo.getUsername());
-            session.getServletContext().setAttribute("loginUserMap", loginOutTime);
+            session.getServletContext().setAttribute("loginOutTime", loginOutTime);
             response.sendRedirect(request.getContextPath() + "/");
             return false;
 
