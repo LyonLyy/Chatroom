@@ -23,6 +23,9 @@ public class UserAuthInteceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+
+
+        System.out.println("preHandle======>execute");
         HttpSession session = request.getSession();
         Object userToken = session.getAttribute(Constant.USER_TOKEN);
         ResponseJson userInfo_json = userInfoService.getByUserId((String) userToken);
@@ -33,7 +36,7 @@ public class UserAuthInteceptor implements HandlerInterceptor {
         if (userToken == null) {
             /*JsonMsgHelper.writeJson(response, new ResponseJson(HttpStatus.FORBIDDEN).setMsg("请登录"),
                     HttpStatus.FORBIDDEN);*/
-            response.sendRedirect("login");
+            response.sendRedirect(request.getContextPath()+"/loginPage");
             return false;
         }
 
@@ -56,7 +59,7 @@ public class UserAuthInteceptor implements HandlerInterceptor {
             session.setAttribute("mess", "用户：" + userInfo.getUsername() + "，于 " + loginOutTime.get(userInfo.getUsername()) + " 已在别处登录!");
             loginOutTime.remove(userInfo.getUsername());
             session.getServletContext().setAttribute("loginOutTime", loginOutTime);
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/loginPage");
             return false;
 
         }

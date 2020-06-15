@@ -24,16 +24,16 @@ public class SecurityController {
     @Autowired
     LimiteLogin limiteLogin;
 
-    @RequestMapping(value = {"login", "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"loginPage", "/"}, method = RequestMethod.GET)
     public String toLogin() {
-        return "login";
+        return "loginPage";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseJson login(HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
             @RequestParam String username, @RequestParam String password) {
-
+        System.out.println("Control======>execute");
         String loginLimite = limiteLogin.loginLimite(request, username);
         ResponseJson result = securityService.login(username, password,session);
 
@@ -67,7 +67,7 @@ public class SecurityController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/clearUserSession")
+    @RequestMapping(value = "/clearUserSession",method = RequestMethod.GET)
     public String clearUserSession(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         //httpSession.invalidate();

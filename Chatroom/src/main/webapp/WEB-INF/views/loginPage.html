@@ -52,7 +52,7 @@
                 },
                 async : false,
                 success: function(data) {
-                    if (data.status == "200") {
+                    if (data.status == 200) {
                         window.location.href="chatroom";
                     } else {
                         alert(data.msg);
@@ -74,7 +74,7 @@
 				type: 'GET',
 				async: false,
 				cache: false,
-				url: '/other/clearUserSession',
+				url: '/clearUserSession',
 				dataType: '',
 				data: {},
 				success: function (data) {
