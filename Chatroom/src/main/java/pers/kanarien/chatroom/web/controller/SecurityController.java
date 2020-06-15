@@ -5,10 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pers.kanarien.chatroom.model.vo.ResponseJson;
@@ -24,15 +21,24 @@ public class SecurityController {
     @Autowired
     LimiteLogin limiteLogin;
 
-    @RequestMapping(value = {"login", "/"}, method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String toLogin() {
+        return "redirect:login";
+    }
+    @GetMapping(value = "/login")
+    public String login_url(){
+
         return "login";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseJson login(HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
             @RequestParam String username, @RequestParam String password) {
+
+        System.out.println("LoginControl =====> execute ");
+
 
         String loginLimite = limiteLogin.loginLimite(request, username);
         ResponseJson result = securityService.login(username, password,session);
