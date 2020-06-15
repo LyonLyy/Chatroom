@@ -36,7 +36,7 @@ public class LimiteLofinimpl implements LimiteLogin {
         UserInfo userInfo = (UserInfo) data.get("userInfo");
         String sessionId=request.getSession().getId();
        for(String key:loginUserMap.keySet()){
-           if(key.equals(userInfo.getUserId())&&!loginUserMap.containsValue(sessionId)){
+           if(key.equals(userInfo.getUsername())&&!loginUserMap.containsValue(sessionId)){
                Date date=new Date();
 
                log.info("用户：" + userInfo.getUsername() + "，于" +date.toString() + "被剔除！");
