@@ -23,6 +23,9 @@ public class UserAuthInteceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+
+
+        System.out.println("LogInterceptor =====> preHandle ");
         HttpSession session = request.getSession();
         Object userToken = session.getAttribute(Constant.USER_TOKEN);
         ResponseJson userInfo_json = userInfoService.getByUserId((String) userToken);
@@ -30,12 +33,7 @@ public class UserAuthInteceptor implements HandlerInterceptor {
 
         UserInfo userInfo = (UserInfo) data.get("userInfo");
 
-        if (userToken == null) {
-            /*JsonMsgHelper.writeJson(response, new ResponseJson(HttpStatus.FORBIDDEN).setMsg("请登录"),
-                    HttpStatus.FORBIDDEN);*/
-            response.sendRedirect("login");
-            return false;
-        }
+
 
 
         //多用户登录限制判断，并给出提示
